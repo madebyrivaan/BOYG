@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://bkgwu4nbuwj6w"]
+
+[ext_resource type="Script" uid="uid://dxgn36cbdyqui" path="res://Script/envirnoment.gd" id="1_b8qhf"]
+[ext_resource type="Texture2D" uid="uid://r1inm7acn26x" path="res://Assets/byog 2026/road.png" id="1_s5nmu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b8qhf"]
+size = Vector2(110, 680.5)
+
+[node name="Environment" type="Node2D" unique_id=110374133]
+script = ExtResource("1_b8qhf")
+
+[node name="Road" type="Sprite2D" parent="." unique_id=1265952730]
+position = Vector2(564.00006, 330)
+scale = Vector2(0.645, 0.645)
+texture = ExtResource("1_s5nmu")
+region_rect = Rect2(-8.811523, -16.718994, 1499.8115, 1071.719)
+
+[node name="ExitMarker" type="Marker2D" parent="." unique_id=1773253224]
+position = Vector2(566, 21)
+
+[node name="EntryMarker" type="Marker2D" parent="." unique_id=2071676323]
+position = Vector2(562, 639)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=689982891]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=151809456]
+position = Vector2(140, 328.75)
+shape = SubResource("RectangleShape2D_b8qhf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=932513041]
+position = Vector2(991, 327)
+shape = SubResource("RectangleShape2D_b8qhf")
+
+[node name="TrafficMarker" type="Node2D" parent="." unique_id=1227076489]
+
+[node name="left" type="Marker2D" parent="TrafficMarker" unique_id=1028428059]
+position = Vector2(338, 311)
+
+[node name="middle" type="Marker2D" parent="TrafficMarker" unique_id=209686253]
+position = Vector2(564, 310)
+
+[node name="right" type="Marker2D" parent="TrafficMarker" unique_id=1812392887]
+position = Vector2(779, 304)

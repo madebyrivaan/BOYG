@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dlwhsig8gchbr"]
+
+[ext_resource type="Script" uid="uid://dj58ktprlb1x5" path="res://Script/environment_spawner.gd" id="1_ykvwd"]
+[ext_resource type="PackedScene" uid="uid://bkgwu4nbuwj6w" path="res://Scene/envirnoment.tscn" id="2_fky6y"]
+
+[node name="EnvironmentSpawner" type="Node2D" unique_id=1359895999]
+script = ExtResource("1_ykvwd")
+environment = ExtResource("2_fky6y")

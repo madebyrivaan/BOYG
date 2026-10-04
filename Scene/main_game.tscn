@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bc6pvcvvxhyus"]
+
+[ext_resource type="PackedScene" uid="uid://bmovk134d2rcr" path="res://Scene/player/player_car_2d.tscn" id="1_jv8gs"]
+[ext_resource type="PackedScene" uid="uid://r04fagg1gg48" path="res://Scene/traffic_car/traffic_spawner.tscn" id="2_1btii"]
+[ext_resource type="PackedScene" uid="uid://bkgwu4nbuwj6w" path="res://Scene/envirnoment.tscn" id="2_vh4eo"]
+[ext_resource type="PackedScene" uid="uid://dlwhsig8gchbr" path="res://Scene/environment_spawner.tscn" id="3_htkpn"]
+[ext_resource type="PackedScene" uid="uid://dy1v6xdf4r58l" path="res://Scene/ui/GameOver.tscn" id="5_44mwd"]
+
+[node name="MainGame" type="Node2D" unique_id=1933203177]
+
+[node name="EnvironmentSpawner" parent="." unique_id=1359895999 node_paths=PackedStringArray("player", "OldRoad", "traffic_spawner") instance=ExtResource("3_htkpn")]
+player = NodePath("../PlayerCar2D")
+OldRoad = NodePath("../Environment")
+traffic_spawner = NodePath("../TrafficSpawner")
+
+[node name="TrafficSpawner" parent="." unique_id=1476490963 instance=ExtResource("2_1btii")]
+position = Vector2(602, 690)
+
+[node name="PlayerCar2D" parent="." unique_id=2024177444 instance=ExtResource("1_jv8gs")]
+position = Vector2(602, 690)
+
+[node name="Environment" parent="." unique_id=110374133 instance=ExtResource("2_vh4eo")]
+position = Vector2(0, 8)
+
+[node name="Control" parent="." unique_id=543670475 instance=ExtResource("5_44mwd")]
+visible = false

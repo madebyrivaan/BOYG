@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bmovk134d2rcr"]
+
+[ext_resource type="Script" uid="uid://bqmk2gba05thf" path="res://Script/PlayerCar2D.gd" id="1_4rb04"]
+[ext_resource type="Texture2D" uid="uid://do5vfae1g7pu6" path="res://Assets/byog 2026/red car.png" id="1_65gxr"]
+
+[node name="PlayerCar2D" type="CharacterBody2D" unique_id=2024177444 groups=["Player"]]
+script = ExtResource("1_4rb04")
+
+[node name="CarSkin" type="Sprite2D" parent="." unique_id=1368603774]
+z_index = 5
+texture_filter = 5
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_65gxr")
+region_enabled = true
+region_rect = Rect2(19.095215, 90.71757, 300.4912, 572.36414)
+
+[node name="Collision" type="CollisionPolygon2D" parent="." unique_id=151591265]
+z_index = 5
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(-96, -256, -118, -175, -99, -94, -130, -49, -111, 51, -116, 140, -94, 213, -18, 249, 97, 242, 142, 142, 129, 59, 148, -60, 127, -115, 138, -211, 70, -279, -56, -282)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1203383726]
+zoom = Vector2(0.37, 0.37)
