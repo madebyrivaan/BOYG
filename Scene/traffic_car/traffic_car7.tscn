@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://btxsce2ub8xut"]
+
+[ext_resource type="Script" uid="uid://dpisemglcvi3h" path="res://Script/traffic_car.gd" id="1_mfa7w"]
+[ext_resource type="Texture2D" uid="uid://dw4gu6hgkpa5g" path="res://Assets/byog 2026/traffic/2D_TOPDOWN_PIXELART_CARS.png" id="2_mfa7w"]
+
+[node name="TrafficCarBlue" type="Node2D" unique_id=2042910818 node_paths=PackedStringArray("static_body", "area2d")]
+script = ExtResource("1_mfa7w")
+static_body = NodePath("StaticBody2D")
+area2d = NodePath("Area2D")
+
+[node name="CarSkin" type="Sprite2D" parent="." unique_id=1427732167]
+z_index = 5
+texture_filter = 5
+rotation = -3.1358633
+scale = Vector2(3.83, 3.83)
+texture = ExtResource("2_mfa7w")
+region_enabled = true
+region_rect = Rect2(61.875, 282.15, 31, 87)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=44447789]
+rotation = -3.1358633
+
+[node name="Collision" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1963313247]
+z_index = 5
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(-96, -256, -126.994835, -173.27525, -120.5595, -97.310875, -130, -49, -111, 51, -133.14986, 148.7653, -98.55457, 252.5688, -10.384136, 282.06415, 79.54563, 269.54868, 123.40741, 245.297, 142, 142, 129, 59, 148, -60, 145.34447, -114.83461, 138, -211, 70, -279, -56, -282)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1023477120]
+
+[node name="Collision" type="CollisionPolygon2D" parent="Area2D" unique_id=776523321]
+z_index = 5
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(-96, -256, -126.994835, -173.27525, -120.5595, -97.310875, -130, -49, -111, 51, -133.14986, 148.7653, -98.55457, 252.5688, -10.384136, 282.06415, 79.54563, 269.54868, 123.40741, 245.297, 142, 142, 129, 59, 148, -60, 145.34447, -114.83461, 138, -211, 70, -279, -56, -282)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

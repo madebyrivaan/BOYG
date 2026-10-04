@@ -5,6 +5,27 @@
 [ext_resource type="PackedScene" uid="uid://bkgwu4nbuwj6w" path="res://Scene/envirnoment.tscn" id="2_vh4eo"]
 [ext_resource type="PackedScene" uid="uid://dlwhsig8gchbr" path="res://Scene/environment_spawner.tscn" id="3_htkpn"]
 [ext_resource type="PackedScene" uid="uid://dy1v6xdf4r58l" path="res://Scene/ui/GameOver.tscn" id="5_44mwd"]
+[ext_resource type="Script" uid="uid://clkp876p4ue01" path="res://Script/weather_controller.gd" id="6_wctrl"]
+[ext_resource type="Shader" uid="uid://dxne7g4a68hkr" path="res://addons/weather_fx/shaders/rain.gdshader" id="6_yxby3"]
+[ext_resource type="Script" uid="uid://wot45kedxq8" path="res://addons/weather_fx/weather_fx.gd" id="7_wfx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1bk83"]
+resource_local_to_scene = true
+shader = ExtResource("6_yxby3")
+shader_parameter/intensity = 1.0
+shader_parameter/speed = 1.0
+shader_parameter/seed = 0.0
+shader_parameter/pixel_size = 0.0
+shader_parameter/color_steps = 0.0
+shader_parameter/rect_size = Vector2(1152, 648)
+shader_parameter/world_origin = Vector2(0, 0)
+shader_parameter/color = Color(0.74, 0.82, 0.96, 0.7)
+shader_parameter/density = 0.5
+shader_parameter/wind = 0.25
+shader_parameter/drop_length = 26.0
+shader_parameter/fall_speed = 1.0
+shader_parameter/ground = 1.0
+shader_parameter/splashes = 0.8
 
 [node name="MainGame" type="Node2D" unique_id=1933203177]
 
@@ -21,6 +42,14 @@ position = Vector2(602, 690)
 
 [node name="Environment" parent="." unique_id=110374133 instance=ExtResource("2_vh4eo")]
 position = Vector2(0, 8)
+
+[node name="WeatherController" type="Node2D" parent="." unique_id=1849201948]
+z_index = 10
+script = ExtResource("6_wctrl")
+
+[node name="WeatherFX" type="Node2D" parent="WeatherController" unique_id=1482910382]
+material = SubResource("ShaderMaterial_1bk83")
+script = ExtResource("7_wfx")
 
 [node name="Control" parent="." unique_id=543670475 instance=ExtResource("5_44mwd")]
 visible = false

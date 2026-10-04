@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
-@export var forward_speed := 400.0
-@export var side_speed := 350.0
+@export var min_forward_speed := 500.0
+@export var max_forward_speed := 1050.0
+@export var forward_speed := 500.0
+@export var side_speed := 425.0
 @onready var sprite: Sprite2D = $CarSkin
 
 enum RoadType {
@@ -14,11 +16,17 @@ var CurrentCarHead: RoadType = RoadType.STRAIGHT
 var is_player_input_blocked : bool = false
 
 func _ready() -> void:
+	GameManager.reset()
 	GameManager.GameOver.connect(func(): is_player_input_blocked = true)
 	sprite.region_enabled = true
 	change_car_head(CurrentCarHead)
 
 func _physics_process(_delta: float) -> void:
+	if not is_player_input_blocked:
+		var diff := GameManager.get_difficulty()
+		forward_speed = lerpf(min_forward_speed, max_forward_speed, diff)
+		side_speed = forward_speed * 0.85
+
 	if is_player_input_blocked:
 		velocity.y = -forward_speed
 		move_and_slide()
