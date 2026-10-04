@@ -1,0 +1,169 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Script/main_menu.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://ilafyba0pcbl" path="res://Assets/UI/freeversion.png" id="2_ui"]
+[ext_resource type="PackedScene" path="res://Scene/ui/settings_menu.tscn" id="3_settings"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_title"]
+font_size = 54
+font_color = Color(1, 0.88, 0.35, 1)
+outline_size = 8
+outline_color = Color(0.2, 0.08, 0.02, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.9)
+shadow_offset = Vector2(4, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_subtitle"]
+font_size = 20
+font_color = Color(0.9, 0.85, 0.7, 1)
+outline_size = 3
+outline_color = Color(0.15, 0.08, 0.02, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_best"]
+font_size = 18
+font_color = Color(1, 0.9, 0.5, 1)
+outline_size = 3
+outline_color = Color(0.15, 0.08, 0.02, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_normal"]
+texture = ExtResource("2_ui")
+texture_margin_left = 12.0
+texture_margin_top = 10.0
+texture_margin_right = 12.0
+texture_margin_bottom = 10.0
+region_rect = Rect2(164, 194, 45, 29)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_hover"]
+texture = ExtResource("2_ui")
+texture_margin_left = 12.0
+texture_margin_top = 10.0
+texture_margin_right = 12.0
+texture_margin_bottom = 10.0
+modulate_color = Color(1.2, 1.2, 1.2, 1)
+region_rect = Rect2(164, 194, 45, 29)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_pressed"]
+texture = ExtResource("2_ui")
+texture_margin_left = 12.0
+texture_margin_top = 10.0
+texture_margin_right = 12.0
+texture_margin_bottom = 10.0
+modulate_color = Color(0.7, 0.7, 0.7, 1)
+region_rect = Rect2(164, 194, 45, 29)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.16, 0.1, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainVBox" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="TitleBox" type="VBoxContainer" parent="CenterContainer/MainVBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="GameTitle" type="Label" parent="CenterContainer/MainVBox/TitleBox"]
+layout_mode = 2
+text = "HIGHWAY RUSH"
+label_settings = SubResource("LabelSettings_title")
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="CenterContainer/MainVBox/TitleBox"]
+layout_mode = 2
+text = "Endless 2D Traffic Jam"
+label_settings = SubResource("LabelSettings_subtitle")
+horizontal_alignment = 1
+
+[node name="MenuPanel" type="NinePatchRect" parent="CenterContainer/MainVBox"]
+custom_minimum_size = Vector2(300, 240)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_ui")
+region_rect = Rect2(3, 126, 122, 51)
+patch_margin_left = 14
+patch_margin_top = 14
+patch_margin_right = 14
+patch_margin_bottom = 14
+
+[node name="ButtonVBox" type="VBoxContainer" parent="CenterContainer/MainVBox/MenuPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 24.0
+offset_right = -32.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="CenterContainer/MainVBox/MenuPanel/ButtonVBox"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
+text = "PLAY"
+
+[node name="SettingsButton" type="Button" parent="CenterContainer/MainVBox/MenuPanel/ButtonVBox"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
+text = "SETTINGS"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/MainVBox/MenuPanel/ButtonVBox"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
+text = "QUIT"
+
+[node name="BestScoreLabel" type="Label" parent="CenterContainer/MainVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "BEST: 0 m"
+label_settings = SubResource("LabelSettings_best")
+horizontal_alignment = 1
+
+[node name="SettingsMenu" parent="." instance=ExtResource("3_settings")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="pressed" from="CenterContainer/MainVBox/MenuPanel/ButtonVBox/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MainVBox/MenuPanel/ButtonVBox/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MainVBox/MenuPanel/ButtonVBox/QuitButton" to="." method="_on_quit_button_pressed"]

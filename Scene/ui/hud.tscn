@@ -1,0 +1,250 @@
+[gd_scene format=3 uid="uid://cq0n1alhbbsho"]
+
+[ext_resource type="Script" uid="uid://bjkpew3raet4f" path="res://Script/hud.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://ilafyba0pcbl" path="res://Assets/UI/freeversion.png" id="2_ui"]
+[ext_resource type="PackedScene" path="res://Scene/ui/settings_menu.tscn" id="3_settings"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_score"]
+font_size = 24
+font_color = Color(1, 0.9, 0.3, 1)
+outline_size = 4
+outline_color = Color(0.15, 0.08, 0.02, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.8)
+
+[sub_resource type="LabelSettings" id="LabelSettings_small"]
+font_size = 14
+font_color = Color(0.9, 0.85, 0.7, 1)
+outline_size = 2
+outline_color = Color(0.12, 0.06, 0.02, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pause_normal"]
+atlas = ExtResource("2_ui")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pause_pressed"]
+atlas = ExtResource("2_ui")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pause_title"]
+font_size = 32
+font_color = Color(1, 0.88, 0.45, 1)
+outline_size = 5
+outline_color = Color(0.15, 0.08, 0.02, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.9)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_normal"]
+texture = ExtResource("2_ui")
+texture_margin_left = 10.0
+texture_margin_top = 8.0
+texture_margin_right = 10.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(164, 194, 45, 29)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_pressed"]
+texture = ExtResource("2_ui")
+texture_margin_left = 10.0
+texture_margin_top = 8.0
+texture_margin_right = 10.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(164, 194, 45, 29)
+modulate_color = Color(0.7, 0.7, 0.7, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_hover"]
+texture = ExtResource("2_ui")
+texture_margin_left = 10.0
+texture_margin_top = 8.0
+texture_margin_right = 10.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(164, 194, 45, 29)
+modulate_color = Color(1.2, 1.2, 1.2, 1)
+
+[node name="HUD" type="CanvasLayer" unique_id=322150142]
+process_mode = 3
+layer = 5
+script = ExtResource("1_script")
+
+[node name="TopMargin" type="MarginContainer" parent="." unique_id=598689769]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 70.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+
+[node name="HBox" type="HBoxContainer" parent="TopMargin" unique_id=951294792]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ScoreCard" type="NinePatchRect" parent="TopMargin/HBox" unique_id=1087943126]
+custom_minimum_size = Vector2(280, 52)
+layout_mode = 2
+texture = ExtResource("2_ui")
+region_rect = Rect2(3, 126, 122, 51)
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="HBox" type="HBoxContainer" parent="TopMargin/HBox/ScoreCard" unique_id=1771334714]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_right = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="TopMargin/HBox/ScoreCard/HBox" unique_id=1925109887]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0 m"
+label_settings = SubResource("LabelSettings_score")
+
+[node name="VBox" type="VBoxContainer" parent="TopMargin/HBox/ScoreCard/HBox" unique_id=917630865]
+layout_mode = 2
+alignment = 1
+
+[node name="HighScoreLabel" type="Label" parent="TopMargin/HBox/ScoreCard/HBox/VBox" unique_id=1856328250]
+unique_name_in_owner = true
+layout_mode = 2
+text = "BEST: 0 m"
+label_settings = SubResource("LabelSettings_small")
+
+[node name="SpeedLabel" type="Label" parent="TopMargin/HBox/ScoreCard/HBox/VBox" unique_id=822427406]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SPD: 50"
+label_settings = SubResource("LabelSettings_small")
+
+[node name="Spacer" type="Control" parent="TopMargin/HBox" unique_id=1768664965]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PauseButton" type="TextureButton" parent="TopMargin/HBox" unique_id=521155921]
+unique_name_in_owner = true
+texture_filter = 3
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_pause_normal")
+texture_pressed = SubResource("AtlasTexture_pause_pressed")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="PausePanel" type="Control" parent="." unique_id=649364639]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="PausePanel" unique_id=1469269071]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="Panel" type="NinePatchRect" parent="PausePanel" unique_id=112036882]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -180.0
+offset_right = 160.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ui")
+region_rect = Rect2(3, 126, 122, 51)
+patch_margin_left = 14
+patch_margin_top = 14
+patch_margin_right = 14
+patch_margin_bottom = 14
+
+[node name="VBox" type="VBoxContainer" parent="PausePanel/Panel" unique_id=1360800337]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 24.0
+offset_right = -30.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="PausePanel/Panel/VBox" unique_id=438733135]
+layout_mode = 2
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_pause_title")
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="PausePanel/Panel/VBox" unique_id=1578688603]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="PausePanel/Panel/VBox" unique_id=367747188]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="PausePanel/Panel/VBox" unique_id=987651214]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
+text = "Restart"
+
+[node name="SettingsButton" type="Button" parent="PausePanel/Panel/VBox" unique_id=1298416385]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
+text = "Settings"
+
+[node name="MainMenuButton" type="Button" parent="PausePanel/Panel/VBox" unique_id=1100439908]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
+text = "Main Menu"
+
+[node name="SettingsMenu" parent="." unique_id=944686933 instance=ExtResource("3_settings")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="pressed" from="TopMargin/HBox/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="PausePanel/Panel/VBox/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PausePanel/Panel/VBox/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="PausePanel/Panel/VBox/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="PausePanel/Panel/VBox/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

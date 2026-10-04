@@ -12,7 +12,7 @@ config_version=5
 
 config/name="BOYG Game Jam"
 config/tags=PackedStringArray("Game Jam")
-run/main_scene="uid://bc6pvcvvxhyus"
+run/main_scene="res://Scene/ui/main_menu.tscn"
 config/features=PackedStringArray("4.7")
 config/icon="res://icon.svg"
 

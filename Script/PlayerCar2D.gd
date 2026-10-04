@@ -21,11 +21,12 @@ func _ready() -> void:
 	sprite.region_enabled = true
 	change_car_head(CurrentCarHead)
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if not is_player_input_blocked:
 		var diff := GameManager.get_difficulty()
 		forward_speed = lerpf(min_forward_speed, max_forward_speed, diff)
 		side_speed = forward_speed * 0.85
+		GameManager.add_distance(forward_speed * delta)
 
 	if is_player_input_blocked:
 		velocity.y = -forward_speed

@@ -1,25 +1,17 @@
-[gd_scene format=3 uid="uid://dy1v6xdf4r58l"]
+[gd_scene format=3]
 
-[ext_resource type="Script" uid="uid://b5rsogkgsp14m" path="res://Script/game_over.gd" id="1_3pfxj"]
+[ext_resource type="Script" path="res://Script/settings_menu.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://ilafyba0pcbl" path="res://Assets/UI/freeversion.png" id="2_ui"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_title"]
-font_size = 38
-font_color = Color(0.95, 0.28, 0.25, 1)
-outline_size = 6
-outline_color = Color(0.18, 0.04, 0.04, 1)
-shadow_size = 4
-shadow_color = Color(0, 0, 0, 0.9)
-
-[sub_resource type="LabelSettings" id="LabelSettings_score"]
-font_size = 22
-font_color = Color(1, 0.9, 0.4, 1)
+font_size = 28
+font_color = Color(1, 0.88, 0.5, 1)
 outline_size = 4
 outline_color = Color(0.15, 0.08, 0.02, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_best"]
+[sub_resource type="LabelSettings" id="LabelSettings_label"]
 font_size = 18
-font_color = Color(0.9, 0.85, 0.7, 1)
+font_color = Color(0.95, 0.95, 0.95, 1)
 outline_size = 3
 outline_color = Color(0.12, 0.06, 0.02, 1)
 
@@ -49,29 +41,36 @@ texture_margin_bottom = 8.0
 modulate_color = Color(0.7, 0.7, 0.7, 1)
 region_rect = Rect2(164, 194, 45, 29)
 
-[node name="GameOver" type="CanvasLayer" unique_id=543670475]
+[node name="SettingsMenu" type="Control"]
 process_mode = 3
-layer = 10
-script = ExtResource("1_3pfxj")
-
-[node name="DimOverlay" type="ColorRect" parent="."]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.65)
+script = ExtResource("1_script")
+
+[node name="DimOverlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
 
 [node name="Panel" type="NinePatchRect" parent="."]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -175.0
-offset_top = -180.0
-offset_right = 175.0
-offset_bottom = 180.0
+offset_left = -200.0
+offset_top = -170.0
+offset_right = 200.0
+offset_bottom = 170.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_ui")
@@ -86,57 +85,51 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 32.0
-offset_top = 26.0
-offset_right = -32.0
-offset_bottom = -26.0
+offset_left = 30.0
+offset_top = 25.0
+offset_right = -30.0
+offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 14
 
 [node name="Title" type="Label" parent="Panel/VBox"]
 layout_mode = 2
-text = "GAME OVER"
+text = "SETTINGS"
 label_settings = SubResource("LabelSettings_title")
 horizontal_alignment = 1
 
-[node name="FinalScoreLabel" type="Label" parent="Panel/VBox"]
-unique_name_in_owner = true
+[node name="VolumeLabel" type="Label" parent="Panel/VBox"]
 layout_mode = 2
-text = "SCORE: 0 m"
-label_settings = SubResource("LabelSettings_score")
-horizontal_alignment = 1
+text = "Master Volume"
+label_settings = SubResource("LabelSettings_label")
 
-[node name="BestScoreLabel" type="Label" parent="Panel/VBox"]
+[node name="VolumeSlider" type="HSlider" parent="Panel/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "BEST: 0 m"
-label_settings = SubResource("LabelSettings_best")
-horizontal_alignment = 1
+value = 80.0
+
+[node name="MuteCheckBox" type="CheckBox" parent="Panel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+text = " Mute Sound"
 
 [node name="Spacer" type="Control" parent="Panel/VBox"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="RestartButton" type="Button" parent="Panel/VBox"]
-custom_minimum_size = Vector2(0, 44)
+[node name="BackButton" type="Button" parent="Panel/VBox"]
+custom_minimum_size = Vector2(160, 44)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
 theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")
 theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
-text = "Try Again"
+text = "Back"
 
-[node name="MainMenuButton" type="Button" parent="Panel/VBox"]
-custom_minimum_size = Vector2(0, 44)
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
-theme_override_font_sizes/font_size = 18
-theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")
-theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
-text = "Main Menu"
-
-[connection signal="pressed" from="Panel/VBox/RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="Panel/VBox/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="value_changed" from="Panel/VBox/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="toggled" from="Panel/VBox/MuteCheckBox" to="." method="_on_mute_check_box_toggled"]
+[connection signal="pressed" from="Panel/VBox/BackButton" to="." method="_on_back_button_pressed"]

@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://clkp876p4ue01" path="res://Script/weather_controller.gd" id="6_wctrl"]
 [ext_resource type="Shader" uid="uid://dxne7g4a68hkr" path="res://addons/weather_fx/shaders/rain.gdshader" id="6_yxby3"]
 [ext_resource type="Script" uid="uid://wot45kedxq8" path="res://addons/weather_fx/weather_fx.gd" id="7_wfx"]
+[ext_resource type="PackedScene" path="res://Scene/ui/hud.tscn" id="8_hud"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1bk83"]
 resource_local_to_scene = true
@@ -50,6 +51,8 @@ script = ExtResource("6_wctrl")
 [node name="WeatherFX" type="Node2D" parent="WeatherController" unique_id=1482910382]
 material = SubResource("ShaderMaterial_1bk83")
 script = ExtResource("7_wfx")
+
+[node name="HUD" parent="." unique_id=1200326609 instance=ExtResource("8_hud")]
 
 [node name="Control" parent="." unique_id=543670475 instance=ExtResource("5_44mwd")]
 visible = false
